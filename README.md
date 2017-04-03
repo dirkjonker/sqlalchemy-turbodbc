@@ -10,14 +10,9 @@ using the issue tracker in Github.
 
 
 ## Installation
-Currently sqlalchemy-turbodbc requires the unreleased 1.1.0 version of Turbodbc,
-which you will need to build and install yourself according to the instructions
-on the Turbodbc repository: https://github.com/blue-yonder/turbodbc#development-version
-
-Then, for now you can use
-`pip install https://github.com/dirkjonker/sqlalchemy-turbodbc/archive/master.tar.gz`
-to install the dialect. When Turbodbc 1.1.0 is released, this package will be
-uploaded to pypi as a wheel.
+You can simply use
+`pip install sqlalchemy-turbodbc`
+to install the dialect.
 
 
 ## Usage

@@ -24,6 +24,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
+    keywords='sql server sqlalchemy turbodbc mssql',
     packages=find_packages(),
     entry_points={
         'sqlalchemy.dialects':
