@@ -16,6 +16,7 @@ to install the dialect.
 
 
 ## Usage
+This should work exactly like the `mssql+pyodbc` dialect as described in the [SQLAlchemy documentation here](https://docs.sqlalchemy.org/en/13/dialects/mssql.html#module-sqlalchemy.dialects.mssql.pyodbc).
 To create a connection using this simply use the `mssql+turbodbc` protocol.
 
 For example:
@@ -24,5 +25,5 @@ For example:
 engine = create_engine('mssql+turbodbc://scott:tiger@mydsn')
 ```
 
-For more information please see the SQLAlchemy documentation.
-http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html#microsoft-sql-server
+For more information please see the SQLAlchemy documentation
+https://docs.sqlalchemy.org/en/13/dialects/mssql.html#module-sqlalchemy.dialects.mssql.pyodbc
