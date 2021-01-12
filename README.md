@@ -16,8 +16,8 @@ to install the dialect.
 
 
 ## Usage
-This works exactly like the `mssql+pyodbc` dialect as described in the [SQLAlchemy documentation here](https://docs.sqlalchemy.org/en/13/dialects/mssql.html#module-sqlalchemy.dialects.mssql.pyodbc).
-To create a connection using this simply use the `mssql+turbodbc` protocol.
+This works similar to the `mssql+pyodbc` dialect as described in the [SQLAlchemy documentation here](https://docs.sqlalchemy.org/en/13/dialects/mssql.html#module-sqlalchemy.dialects.mssql.pyodbc).
+To create a connection using this library, use the `mssql+turbodbc` protocol. It is recommended to set up your database connection as a DSN (Data Source Name) in your ODBC configuration, as described in the [Turbodbc documentation](https://turbodbc.readthedocs.io/en/latest/pages/databases/mssql.html).
 
 For example:
 
