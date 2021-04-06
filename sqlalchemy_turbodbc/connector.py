@@ -77,10 +77,10 @@ class TurbodbcConnector(Connector):
         # first get the Turbodbc specific options
         turbodbc_options = {}
         for param in ('read_buffer_size', 'parameter_sets_to_buffer',
-                      'use_async_io'):
+                      'use_async_io', 'autocommit'):
             if param in options:
                 raw = options.pop(param)
-                if param == 'use_async_io':
+                if param in ('use_async_io', 'autocommit'):
                     value = util.asbool(raw)
                 else:
                     value = util.asint(raw)
@@ -89,7 +89,7 @@ class TurbodbcConnector(Connector):
         # we always need to set prefer_unicode=True for MSSQL + Turbodbc
         connect_args['turbodbc_options'] = make_options(prefer_unicode=True,
                                                         **turbodbc_options)
-        for param in ('ansi', 'unicode_results', 'autocommit'):
+        for param in ('ansi', 'unicode_results'):
             if param in options:
                 connect_args[param] = util.asbool(options.pop(param))
 
