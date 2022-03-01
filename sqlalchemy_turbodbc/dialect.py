@@ -59,6 +59,7 @@ class MSExecutionContext_turbodbc(MSExecutionContext):
 class MSDialect_turbodbc(TurbodbcConnector, MSDialect):
 
     default_paramstyle = 'qmark'
+    supports_statement_cache = True
 
     execution_ctx_cls = MSExecutionContext_turbodbc
 
