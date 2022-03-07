@@ -77,10 +77,12 @@ class TurbodbcConnector(Connector):
         # first get the Turbodbc specific options
         turbodbc_options = {}
         for param in ('read_buffer_size', 'parameter_sets_to_buffer',
-                      'use_async_io', 'autocommit'):
+                      'use_async_io', 'autocommit',
+                      'large_decimals_as_64_bit_types'):
             if param in options:
                 raw = options.pop(param)
-                if param in ('use_async_io', 'autocommit'):
+                if param in ('use_async_io', 'autocommit',
+                             'large_decimals_as_64_bit_types'):
                     value = util.asbool(raw)
                 else:
                     value = util.asint(raw)
