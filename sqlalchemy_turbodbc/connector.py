@@ -136,6 +136,6 @@ class TurbodbcConnector(Connector):
         #     return "The cursor's connection has been closed." in str(e) or \
         #         'Attempt to use a closed connection.' in str(e)
         if isinstance(e, self.dbapi.Error):
-            return '[08S01]' in str(e)
+            return '08S01' in str(e)
         else:
             return False
