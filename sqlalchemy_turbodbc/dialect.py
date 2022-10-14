@@ -92,3 +92,25 @@ class MSDialect_turbodbc(TurbodbcConnector, MSDialect):
                 except ValueError:
                     version.append(n)
             return tuple(version)
+
+
+    def is_disconnect(self, e, connection, cursor):
+        if isinstance(e, self.dbapi.Error):
+            msg = e.args[0]
+            disconnect_codes = {
+                "08S01",
+                "01000",
+                "01002",
+                "08003",
+                "08007",
+                "08S02",
+                "08001",
+                "HYT00",
+                "HY010",
+                "10054",
+            }
+            if any(code in msg for code in disconnect_codes):
+                return True
+        return super(MSDialect_turbodbc, self).is_disconnect(
+            e, connection, cursor
+        )
