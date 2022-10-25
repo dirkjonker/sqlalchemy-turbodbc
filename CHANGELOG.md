@@ -1,3 +1,7 @@
+# sqlalchemy-turbodbc 1.1.2 - 2022-10-25
+
+- Support full range of MSSQL error codes (#12) - @adamchen
+
 # sqlalchemy-turbodbc 1.1.0 - 2022-03-07
 
 - Add support for statements cache (#10) thanks to @adamchen
