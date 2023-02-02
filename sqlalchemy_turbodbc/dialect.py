@@ -19,7 +19,7 @@
 import re
 
 from sqlalchemy.dialects.mssql.base import MSExecutionContext, MSDialect
-from sqlalchemy import exc
+from sqlalchemy import exc, text
 
 from .connector import TurbodbcConnector
 
@@ -76,7 +76,7 @@ class MSDialect_turbodbc(TurbodbcConnector, MSDialect):
         try:
             # SERVERPROPERTY returns the SQL_VARIANT type which is not
             # supported, so we cast it to varchar
-            stmt = "SELECT CAST(SERVERPROPERTY('ProductVersion') AS VARCHAR)"
+            stmt = text("SELECT CAST(SERVERPROPERTY('ProductVersion') AS VARCHAR)")
             raw = connection.scalar(stmt)
         except exc.DBAPIError:
             # SQL Server docs indicate this function isn't present prior to
