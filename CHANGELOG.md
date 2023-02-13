@@ -1,3 +1,7 @@
+# sqlalchemy-turbodbc 1.2.0 - 2023-02-13
+
+- Support SQLAlchemy 2.x (#14) - @adamchen
+
 # sqlalchemy-turbodbc 1.1.2 - 2022-10-25
 
 - Support full range of MSSQL error codes (#12) - @adamchen
