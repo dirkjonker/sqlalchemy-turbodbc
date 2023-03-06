@@ -60,6 +60,10 @@ class TurbodbcConnector(Connector):
     def import_dbapi(cls):
         return __import__('turbodbc')
 
+    @classmethod
+    def dbapi(cls):
+        return __import__('turbodbc')
+
     def create_connect_args(self, url):
         """Create the connect args for Turbodbc.
 
