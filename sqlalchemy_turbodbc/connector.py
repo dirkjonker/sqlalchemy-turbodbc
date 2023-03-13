@@ -57,10 +57,6 @@ class TurbodbcConnector(Connector):
     colspecs = {sqltypes.Numeric: _TurboDecimal}
 
     @classmethod
-    def import_dbapi(cls):
-        return __import__('turbodbc')
-
-    @classmethod
     def dbapi(cls):
         return __import__('turbodbc')
 

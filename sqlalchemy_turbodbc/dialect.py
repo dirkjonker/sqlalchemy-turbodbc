@@ -69,6 +69,14 @@ class MSDialect_turbodbc(TurbodbcConnector, MSDialect):
         super(MSDialect_turbodbc, self).__init__(**params)
         self.use_scope_identity = False
 
+    @classmethod
+    def import_dbapi(cls):
+        return __import__('turbodbc')
+
+    @classmethod
+    def dbapi(cls):
+        return __import__('turbodbc')
+
     def do_executemany(self, cursor, statement, parameters, context=None):
         cursor.executemany(statement, list(parameters))
 
