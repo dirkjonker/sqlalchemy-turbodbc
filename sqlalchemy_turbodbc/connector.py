@@ -133,8 +133,10 @@ class TurbodbcConnector(Connector):
 
     def is_disconnect(self, e, connection, cursor):
         if isinstance(e, self.dbapi.Error):
-            return "The cursor's connection has been closed." in str(
-                e
-            ) or "Attempt to use a closed connection." in str(e)
+            return (
+                "The cursor's connection has been closed." in str(e)
+                or "Attempt to use a closed connection." in str(e)
+                or "Connection already closed" in str(e)
+            )
         else:
             return False
