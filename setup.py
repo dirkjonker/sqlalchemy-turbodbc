@@ -2,10 +2,10 @@ import sys
 from setuptools import setup, find_packages
 
 
-test_requirements = ['pytest']
+test_requirements = ["pytest"]
 
 if sys.version_info < (3, 3):
-    test_requirements.append('mock')
+    test_requirements.append("mock")
 
 
 long_description = """
@@ -27,32 +27,30 @@ For more information please see the [SQLAlchemy documentation](https://docs.sqla
 
 
 setup(
-    name='sqlalchemy_turbodbc',
-    version='1.2.2',
-    description='SQLAlchemy dialect for Turbodbc',
+    name="sqlalchemy_turbodbc",
+    version="1.2.3",
+    description="SQLAlchemy dialect for Turbodbc",
     long_description=long_description,
-    long_description_content_type='text/markdown',
-    author='Dirk Jonker',
-    author_email='dirkjonker@gmail.com',
-    url='https://github.com/dirkjonker/sqlalchemy-turbodbc',
+    long_description_content_type="text/markdown",
+    author="Dirk Jonker",
+    author_email="dirkjonker@gmail.com",
+    url="https://github.com/dirkjonker/sqlalchemy-turbodbc",
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
-        'Topic :: Database',
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python",
+        "Topic :: Database",
     ],
-    keywords='sql server sqlalchemy turbodbc mssql',
+    keywords="sql server sqlalchemy turbodbc mssql",
     packages=find_packages(),
     entry_points={
-        'sqlalchemy.dialects':
-            ['mssql.turbodbc = sqlalchemy_turbodbc.dialect:MSDialect_turbodbc']
+        "sqlalchemy.dialects": [
+            "mssql.turbodbc = sqlalchemy_turbodbc.dialect:MSDialect_turbodbc"
+        ]
     },
-    license='MIT',
-    install_requires=[
-        'sqlalchemy',
-        'turbodbc>=1.1.0'
-    ],
-    setup_requires=['pytest-runner'],
-    tests_require=test_requirements
+    license="MIT",
+    install_requires=["sqlalchemy", "turbodbc>=1.1.0"],
+    setup_requires=["pytest-runner"],
+    tests_require=test_requirements,
 )
