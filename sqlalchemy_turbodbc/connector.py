@@ -13,7 +13,7 @@ import decimal
 import sqlalchemy.types as sqltypes
 from sqlalchemy import util
 from sqlalchemy.connectors import Connector
-from turbodbc import make_options
+from turbodbc import Megabytes, Rows, make_options
 
 
 class _TurboDecimal(sqltypes.DECIMAL):
@@ -81,11 +81,15 @@ class TurbodbcConnector(Connector):
                       'large_decimals_as_64_bit_types'):
             if param in options:
                 raw = options.pop(param)
-                if param in ('use_async_io', 'autocommit',
-                             'large_decimals_as_64_bit_types'):
-                    value = util.asbool(raw)
-                else:
+                if param == 'read_buffer_size':
+                    if raw.endswith('MB'):
+                        value = Megabytes(util.asint(raw[:-2]))
+                    else:
+                        value = Rows(util.asint(raw))
+                elif param == 'parameter_sets_to_buffer':
                     value = util.asint(raw)
+                else:
+                    value = util.asbool(raw)
                 turbodbc_options[param] = value
 
         # we always need to set prefer_unicode=True for MSSQL + Turbodbc
