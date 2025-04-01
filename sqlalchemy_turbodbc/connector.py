@@ -24,7 +24,18 @@ class _TurboDecimal(sqltypes.DECIMAL):
     Copyright (c) 2016-2017 Blue Yonder GmbH
     """
     def bind_processor(self, dialect):
-        return super(_TurboDecimal, self).bind_processor(dialect)
+        if self.asdecimal:
+	    # in line with turbodbc approach to send decimal as string
+            def to_str(value):
+                if value is None:
+                    return None
+                else:
+                    # handles scentific notation Decimals
+                    return "{:f}".format(value)
+
+            return to_str
+        else:
+            return super(_TurboDecimal, self).bind_processor(dialect)
 
     def result_processor(self, dialect, coltype):
         if self.asdecimal:
