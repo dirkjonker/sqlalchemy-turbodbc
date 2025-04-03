@@ -28,7 +28,7 @@ For more information please see the [SQLAlchemy documentation](https://docs.sqla
 
 setup(
     name="sqlalchemy_turbodbc",
-    version="1.2.3",
+    version="1.2.4",
     description="SQLAlchemy dialect for Turbodbc",
     long_description=long_description,
     long_description_content_type="text/markdown",
