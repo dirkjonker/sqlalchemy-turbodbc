@@ -29,6 +29,8 @@ class _TurboDecimal(sqltypes.DECIMAL):
             def to_str(value):
                 if value is None:
                     return None
+                elif isinstance(value, str):
+                    return value
                 else:
                     # handles scentific notation Decimals
                     return "{:f}".format(value)
