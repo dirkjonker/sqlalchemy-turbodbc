@@ -25,13 +25,19 @@ class _TurboDecimal(sqltypes.DECIMAL):
     """
     def bind_processor(self, dialect):
         if self.asdecimal:
-	    # in line with turbodbc approach to send decimal as string
+        # in line with turbodbc approach to send decimal as string
             def to_str(value):
                 if value is None:
                     return None
+                elif isinstance(value, str):
+                    return value
+                elif isinstance(value, float):
+                    return self._float_to_str(value)
                 else:
-                    # handles scentific notation Decimals
-                    return "{:f}".format(value)
+                    if self.scale is not None:
+                        return "{:.{}f}".format(value, self.scale)
+                    else:
+                        return "{:f}".format(value)
 
             return to_str
         else:
@@ -39,7 +45,6 @@ class _TurboDecimal(sqltypes.DECIMAL):
 
     def result_processor(self, dialect, coltype):
         if self.asdecimal:
-            fstring = "%%.%df" % self._effective_decimal_return_scale
 
             def to_decimal(value):
                 if value is None:
@@ -47,13 +52,17 @@ class _TurboDecimal(sqltypes.DECIMAL):
                 elif isinstance(value, decimal.Decimal):
                     return value
                 elif isinstance(value, float):
-                    return decimal.Decimal(fstring % value)
+                    return decimal.Decimal(self._float_to_str(value))
                 else:
                     return decimal.Decimal(value)
 
             return to_decimal
         else:
             return None
+
+    def _float_to_str(self, value):
+        fstring = "%%.%df" % self._effective_decimal_return_scale
+        return fstring % value
 
 
 class TurbodbcConnector(Connector):
